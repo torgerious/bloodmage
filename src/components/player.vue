@@ -19,43 +19,42 @@ import anime from '../../node_modules/animejs/lib/anime.es';
 // import { direction } from '../views/scene1.vue';
 
 @Component({
-    name:'player',
+    name: 'player',
     components: {
   },
 })
 export default class player extends Vue {
-    @Prop({default:20}) positionX:number;
-    @Prop({default:0}) positionY:number;
-    @Prop({default:'right'}) CharacterDirection:string;
-    @Prop({default:false}) isWalking:boolean;
-    @Prop({default:false}) isJumping:boolean;
-    @Prop({default:''}) message:string;
+    @Prop({default: 20}) public positionX: number;
+    @Prop({default: 0}) public positionY: number;
+    @Prop({default: 'right'}) public CharacterDirection: string;
+    @Prop({default: false}) public isWalking: boolean;
+    @Prop({default: false}) public isJumping: boolean;
+    @Prop({default: ''}) public message: string;
 
 
 
 
 
 
-    public jumping:boolean = false;
-    
-    public runAnime(event):void{
+    public jumping: boolean = false;
+
+    public runAnime(event): void {
         this.$emit('eventHandler', event);
     }
 
-  
 
-  
-   
 
-    public created():void {
-      
+
+
+
+    public created(): void {
+
    }
 
 
-  
+
 
 }
-
 </script>
 
 <style lang="scss" scoped>

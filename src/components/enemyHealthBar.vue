@@ -9,33 +9,32 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 
 @Component({
-    name:'hp',
+    name: 'hp',
     components: {
   },
 })
 export default class enemyHealthBar extends Vue {
-    @Prop({default:0}) hp:number;
+    @Prop({default: 0}) public hp: number;
 
 
 
-    public jumping:boolean = false;
-    
-    public runAnime(event):void{
+    public jumping: boolean = false;
+
+    public runAnime(event): void {
         this.$emit('eventHandler', event);
     }
 
-   
 
-    public created():void {
-    
-      
+
+    public created(): void {
+
+
    }
 
 
-  
+
 
 }
-
 </script>
 
 <style lang="scss" scoped>

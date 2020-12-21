@@ -28,32 +28,31 @@ import HealthBar from '../components/healtbar.vue';
 
 
 @Component({
-    name:'hp',
+    name: 'hp',
     components: {
   },
 })
 export default class fightScene extends Vue {
-    @Prop({default:0}) hp:number;
+    @Prop({default: 0}) public hp: number;
 
 
 
-    
-    public runAnime(event):void{
+
+    public runAnime(event): void {
         this.$emit('eventHandler', event);
     }
 
-   
 
-    public created():void {
-    
-      
+
+    public created(): void {
+
+
    }
 
 
-  
+
 
 }
-
 </script>
 
 <style lang="scss" scoped>

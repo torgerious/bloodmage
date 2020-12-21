@@ -15,36 +15,35 @@ import anime from '../../node_modules/animejs/lib/anime.es';
 // import { direction } from '../views/scene1.vue';
 
 @Component({
-    name:'monster',
+    name: 'monster',
     components: {
   },
 })
 export default class monster extends Vue {
-    @Prop({default:''}) npcMessage:string;
+    @Prop({default: ''}) public npcMessage: string;
 
 
-    public jumping:boolean = false;
-    
-    public hideMessage(event):void{
+    public jumping: boolean = false;
+
+    public hideMessage(event): void {
         this.$emit('eventHandlerMessage', event);
     }
 
-    public startFight(event):void{
+    public startFight(event): void {
         this.$emit('fightHandler', event);
     }
 
 
-   
 
-    public created():void {
-      
+
+    public created(): void {
+
    }
 
 
-  
+
 
 }
-
 </script>
 
 <style lang="scss" scoped>

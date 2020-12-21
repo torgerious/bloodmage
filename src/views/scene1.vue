@@ -56,80 +56,80 @@ import FightScene from '../components/fightScene.vue';
         HealthBar,
         Monster,
         FightScene,
-        EnemyHealthBar
+        EnemyHealthBar,
   },
 })
 export default class scene1 extends Vue {
 
 
-    public positionX:number = 0;
-    public positionY:number = 0;
-    public direction:string = 'right';
-    public isWalking:boolean = false;
-    public walkingForward:boolean = false;
-    public walkingBackward:boolean = false;
-    public isJumping:boolean = false;
-    public currentHP:number = 100;
-    public message:string = '';
-    public npmMessage:string = '';
-    public isFighting:boolean = false;
-    
+    public positionX: number = 0;
+    public positionY: number = 0;
+    public direction: string = 'right';
+    public isWalking: boolean = false;
+    public walkingForward: boolean = false;
+    public walkingBackward: boolean = false;
+    public isJumping: boolean = false;
+    public currentHP: number = 100;
+    public message: string = '';
+    public npmMessage: string = '';
+    public isFighting: boolean = false;
 
-    refreshCamera():void{
-        document.documentElement.scrollLeft = 0        
+
+    public refreshCamera(): void {
+        document.documentElement.scrollLeft = 0;
     }
 
-    teleport():void{
-        alert("You will now be teleported to the mountains");
+    public teleport(): void {
+        alert('You will now be teleported to the mountains');
     }
 
 
-    public hideNPCMessage():void{
-        console.log("hiding mess");
+    public hideNPCMessage(): void {
+        console.log('hiding mess');
 
         this.npmMessage = '';
-        console.log("hiding mess");
+        console.log('hiding mess');
     }
 
-    public startFight():void{
+    public startFight(): void {
         this.isFighting = true;
     }
 
 
     @Watch('message')
-    clearMessage(){
-        console.log("checcking message");
+    public clearMessage() {
+        console.log('checcking message');
         setTimeout(() => {
-            console.log("Cleared message");
+            console.log('Cleared message');
             this.message = '';
-        }, 3000)
+        }, 3000);
     }
-    
 
-      
 
-    public runAnime():void{
-            let loop = false;
-            let easing = 'easeOutQuad';
-            let direction = 'normal';
+
+
+    public runAnime(): void {
+            const loop = false;
+            const easing = 'easeOutQuad';
+            const direction = 'normal';
             let jumpYPosition = 0;
-            let jumpXPosition = 0;
+            const jumpXPosition = 0;
 
-            
-            
-            if(this.direction === 'right'){
+
+
+            if (this.direction === 'right') {
                  jumpYPosition = this.positionY + 50 ;
             }
-            if(this.direction === 'left'){
+            if (this.direction === 'left') {
                  jumpYPosition = this.positionY + 50 ;
             }
 
-            
 
-          let player = anime.timeline({  
-              loop, 
+
+            const player = anime.timeline({
+              loop,
               direction,
-              duration: 400
+              duration: 400,
               })
 
         .add({
@@ -144,10 +144,10 @@ export default class scene1 extends Vue {
             targets: '.player',
             easing,
             // background: '#FBF38C'
-        })
+        });
     }
 
-    public gameOver():void{
+    public gameOver(): void {
         this.positionX = 0;
         this.refreshCamera();
         this.isWalking = false;
@@ -156,10 +156,10 @@ export default class scene1 extends Vue {
         this.currentHP = 100;
     }
 
-    public isLosingDamage():void{
+    public isLosingDamage(): void {
         this.currentHP = this.currentHP - 20;
         this.message = 'Auuuuch!!';
-        if(this.currentHP < 0){
+        if (this.currentHP < 0) {
             this.gameOver();
         }
     }
@@ -167,39 +167,37 @@ export default class scene1 extends Vue {
 
 
 
-    created() {
+    public created() {
 
-        setInterval(() => { 
-            let html = document.documentElement;
-                
+        setInterval(() => {
+            const html = document.documentElement;
 
-                if(this.positionX > 250 && this.positionX < 255 && !this.isJumping){
+
+            if (this.positionX > 250 && this.positionX < 255 && !this.isJumping) {
                     this.isLosingDamage();
                 }
 
-                if(this.positionX > 1000 && this.positionX < 1005){
-                    this.npmMessage = "YOU SHALL NOT PASS! ";
+            if (this.positionX > 1000 && this.positionX < 1005) {
+                    this.npmMessage = 'YOU SHALL NOT PASS! ';
                 }
 
-    
 
 
-            if(this.walkingForward){
+
+            if (this.walkingForward) {
                 this.direction = 'right';
                 this.positionX = this.positionX + 3;
                 html.scrollLeft += 3;
                 this.isWalking = true;
-            }else if(this.walkingBackward){
+            } else if (this.walkingBackward) {
                 this.direction = 'left';
                 this.positionX = this.positionX + -4;
                 html.scrollLeft += -3;
                 this.isWalking = true;
-                if(this.positionX < 0){
+                if (this.positionX < 0) {
                     this.positionX = 0;
                 }
-            }
-        
-            else {
+            } else {
                 this.isWalking = false;
                 this.walkingForward = false;
                 this.walkingBackward = false;
@@ -208,52 +206,52 @@ export default class scene1 extends Vue {
 
 
 
-            let d:number = 68;
-            let spacebar:number = 32;
-            let a:number = 65;
-
-    
+        const d: number = 68;
+        const spacebar: number = 32;
+        const a: number = 65;
 
 
-        //Check for keys released
-        window.addEventListener('keyup', e =>{
-            let keyPressed:number = e.keyCode;
 
-            if(keyPressed === d){
-                console.log("STOPPED WALKING FORWARD");
+
+        // Check for keys released
+        window.addEventListener('keyup', (e) => {
+            const keyPressed: number = e.keyCode;
+
+            if (keyPressed === d) {
+                console.log('STOPPED WALKING FORWARD');
                 this.walkingForward = false;
                 this.isWalking = false;
             }
 
-        
-            if(keyPressed === a){
-                console.log("STOPPED WALKING BACKWARDS");
+
+            if (keyPressed === a) {
+                console.log('STOPPED WALKING BACKWARDS');
                 this.isWalking = false;
                 this.walkingBackward = false;
             }
         });
 
-        //Check for keys pressed
-        window.addEventListener('keydown', e =>{
-    
-            let keyPressed:number = e.keyCode;
-            let html = document.documentElement;
+        // Check for keys pressed
+        window.addEventListener('keydown', (e) => {
 
-            //Walk forward
-            if(keyPressed === d){
+            const keyPressed: number = e.keyCode;
+            const html = document.documentElement;
+
+            // Walk forward
+            if (keyPressed === d) {
                 // console.log("WALKING FORWARD");
                 this.walkingForward = true;
                 this.walkingBackward = false;
             }
 
-            if(keyPressed === spacebar){
+            if (keyPressed === spacebar) {
                 this.runAnime();
                 this.isJumping = true;
                 setTimeout(() => {
                     this.isJumping = false;
-                },400 )
+                }, 400 );
             }
-            if(keyPressed === a){
+            if (keyPressed === a) {
                 this.walkingForward = false;
                 this.walkingBackward = true;
             }
@@ -264,11 +262,10 @@ export default class scene1 extends Vue {
 
 
 
-    destroyed() {
-    };
+    public destroyed() {
+    }
 
 }
-
 </script>
 <style lang="scss" scoped>
 .game-wrapper{
